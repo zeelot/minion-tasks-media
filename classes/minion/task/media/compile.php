@@ -1,11 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Minion_Task_Assets_Compile extends Minion_Task {
+class Minion_Task_Media_Compile extends Minion_Task {
 
 	public function execute(array $config)
 	{
 		$media = Arr::flatten(Kohana::list_files('media'));
-		$module_config = Kohana::$config->load('minion-assets');
+		$module_config = Kohana::$config->load('minion-media');
 
 		foreach ($module_config->compilers as $info)
 		{

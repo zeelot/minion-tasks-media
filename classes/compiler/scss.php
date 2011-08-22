@@ -17,7 +17,7 @@ class Compiler_SCSS {
 			mkdir($config_dir, 0777, TRUE);
 		}
 
-		$view = View::factory('minion/tasks/assets/compass')
+		$view = View::factory('minion/tasks/media/compass')
 			->set('options', $options);
 		file_put_contents($config_dir.'/compass.rb', $view->render());
 
