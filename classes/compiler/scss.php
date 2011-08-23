@@ -32,14 +32,14 @@ class Compiler_SCSS {
 		foreach ($compiled_files as $relative_path => $absolute_path)
 		{
 			$destination = $options['save_dir'].'/'.$relative_path;
-			Compiler_SCSS::put_file($absolute_path, $destination);
+			Compiler_SCSS::put_file($absolute_path, $destination, FALSE);
 		}
 
 		// Remove the tmp directory
 		exec('rm -R '.escapeshellarg($options['tmp_dir']));
 	}
 
-	public static function put_file($source, $destination)
+	public static function put_file($source, $destination, $symlink = TRUE)
 	{
 		$directory = pathinfo($destination, PATHINFO_DIRNAME);
 		if ( ! is_dir($directory))
@@ -48,6 +48,13 @@ class Compiler_SCSS {
 			mkdir($directory, 0777, TRUE);
 		}
 
-		copy($source, $destination);
+		if ($symlink)
+		{
+			symlink($source, $destination);
+		}
+		else
+		{
+			copy($source, $destination);
+		}
 	}
 }
