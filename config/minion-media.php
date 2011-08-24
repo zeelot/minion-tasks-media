@@ -6,6 +6,27 @@ return array(
 		'js'   => array(
 			'extension' => 'js',
 			'callback'  => 'Compiler_JS::compile',
+			'options'   => array(
+				// Options for concatinating JS files
+				'concat' => array(
+					// Group name
+					'main' => array(
+						// Files get sorted by this before being merged
+						'order' => 1,
+						// Files belong to this group if the filepath matches the pattern
+						'pattern' => '/.*/',
+					),
+				),
+				// Whether to run the JS through jslint before compressing
+				'jslink' => TRUE,
+				// Where to save the concatinated JS
+				'save_paths' => array(
+					// Version best used in production
+					'minified'   => APPPATH.'media/js/compiled/app.min.js',
+					// Unminified version for development
+					'unminified' => APPPATH.'media/js/compiled/app.js',
+				),
+			),
 		),
 		'css'   => array(
 			'extension' => 'css',
