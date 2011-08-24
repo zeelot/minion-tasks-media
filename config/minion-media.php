@@ -14,7 +14,7 @@ return array(
 						// Files get sorted by this before being merged
 						'order' => 1,
 						// Files belong to this group if the filepath matches the pattern
-						'pattern' => '/.*/',
+						'pattern' => '/^media\/js.*/',
 					),
 				),
 				// Whether to run the JS through jslint before compressing
