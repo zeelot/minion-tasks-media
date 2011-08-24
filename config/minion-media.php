@@ -28,10 +28,6 @@ return array(
 				),
 			),
 		),
-		'css'   => array(
-			'extension' => 'css',
-			'callback'  => 'Compiler_CSS::compile',
-		),
 		'scss'   => array(
 			'extension' => 'scss',
 			'callback'  => 'Compiler_SCSS::compile',
