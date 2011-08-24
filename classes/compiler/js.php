@@ -8,6 +8,10 @@ class Compiler_JS extends Media_Compiler{
 
 		foreach ($filepaths as $relative_path => $absolute_path)
 		{
+			// Exclude the save paths
+			if (in_array($absolute_path, $options['save_paths']))
+				continue;
+
 			foreach ($options['concat'] as $group => $properties)
 			{
 				// If the relative path matches the pattern
@@ -20,8 +24,17 @@ class Compiler_JS extends Media_Compiler{
 			}
 		}
 
+		$unmin_path = $options['save_paths']['unminified'];
+		$min_path = $options['save_paths']['minified'];
+
 		if (empty($file_meta))
-			return TRUE; // Nothing to compile
+		{
+			// Our files are empty because there is nothing to compile
+			Compiler_JS::put_contents($unmin_path, '');
+			Compiler_JS::put_contents($min_path, '');
+
+			return TRUE;
+		}
 
 		// Sort the $file_meta array by order (key) before concatinating
 		ksort($file_meta);
@@ -34,8 +47,6 @@ class Compiler_JS extends Media_Compiler{
 			$content .= file_get_contents($path);
 		}
 
-		$unmin_path = $options['save_paths']['unminified'];
-		$min_path = $options['save_paths']['minified'];
 		// Save the unminified version
 		Compiler_JS::put_contents($unmin_path, $content);
 
