@@ -7,7 +7,7 @@ return array(
 			'extension' => 'js',
 			'class'     => 'Media_Compiler_JS',
 			'options'   => array(
-				// Options for concatinating JS files
+				// Options for concatenating JS files
 				'concat' => array(
 					// Group name
 					'main' => array(
@@ -19,7 +19,7 @@ return array(
 				),
 				// Whether to run the JS through jslint before compressing
 				'jslink' => TRUE,
-				// Where to save the concatinated JS
+				// Where to save the concatenated JS
 				'save_paths' => array(
 					// Version best used in production
 					'minified'   => APPPATH.'media/js/compiled/app.min.js',

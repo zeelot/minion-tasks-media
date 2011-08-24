@@ -36,7 +36,7 @@ class Media_Compiler_JS extends Media_Compiler implements Media_ICompiler {
 			return TRUE;
 		}
 
-		// Sort the $file_meta array by order (key) before concatinating
+		// Sort the $file_meta array by order (key) before concatenating
 		ksort($file_meta);
 
 		$files = Arr::flatten($file_meta);
