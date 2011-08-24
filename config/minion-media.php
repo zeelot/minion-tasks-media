@@ -1,7 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 return array(
-	'watch' => array(),
 	'compilers' => array(
 		'js'   => array(
 			'extension' => 'js',
@@ -17,8 +16,6 @@ return array(
 						'pattern' => '/^media\/js.*/',
 					),
 				),
-				// Whether to run the JS through jslint before compressing
-				'jslink' => TRUE,
 				// Where to save the concatenated JS
 				'save_paths' => array(
 					// Version best used in production
@@ -44,9 +41,5 @@ return array(
 				'save_dir'        => rtrim(APPPATH, '/'),
 			),
 		),
-	),
-	'cache' => array(
-		'generate' => array(),
-		'clear'    => array(),
 	),
 );
