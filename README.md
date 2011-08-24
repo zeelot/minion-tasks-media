@@ -1,4 +1,4 @@
-# Media
+# Media Tasks
 
 *Tasks that work with my [http://github.com/Zeelot/kohana-media](kohana-media) module*
 
