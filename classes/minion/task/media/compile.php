@@ -23,7 +23,9 @@ class Minion_Task_Media_Compile extends Minion_Task {
 			if ( ! empty($files))
 			{
 				// Compile these files
-				call_user_func($info['callback'], $files, Arr::get($info, 'options', array()));
+				$class_name = $info['class'];
+				$compiler = new $class_name;
+				$compiler->compile($files, Arr::get($info, 'options', array()));
 			}
 		}
 	}
