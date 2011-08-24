@@ -5,7 +5,7 @@ return array(
 	'compilers' => array(
 		'js'   => array(
 			'extension' => 'js',
-			'callback'  => 'Compiler_JS::compile',
+			'callback'  => 'Media_Compiler_JS::compile',
 			'options'   => array(
 				// Options for concatinating JS files
 				'concat' => array(
@@ -30,7 +30,7 @@ return array(
 		),
 		'scss'   => array(
 			'extension' => 'scss',
-			'callback'  => 'Compiler_SCSS::compile',
+			'callback'  => 'Media_Compiler_SCSS::compile',
 			'options'   => array(
 				// Compass project settings (relative from tmp_dir)
 				'css_dir'         => 'media/css/compiled',

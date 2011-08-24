@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Compiler_JS extends Media_Compiler{
+class Media_Compiler_JS extends Media_Compiler{
 
 	public static function compile(array $filepaths, array $options)
 	{
@@ -30,8 +30,8 @@ class Compiler_JS extends Media_Compiler{
 		if (empty($file_meta))
 		{
 			// Our files are empty because there is nothing to compile
-			Compiler_JS::put_contents($unmin_path, '');
-			Compiler_JS::put_contents($min_path, '');
+			Media_Compiler_JS::put_contents($unmin_path, '');
+			Media_Compiler_JS::put_contents($min_path, '');
 
 			return TRUE;
 		}
@@ -48,7 +48,7 @@ class Compiler_JS extends Media_Compiler{
 		}
 
 		// Save the unminified version
-		Compiler_JS::put_contents($unmin_path, $content);
+		Media_Compiler_JS::put_contents($unmin_path, $content);
 
 		// Not mangling variable names and not removing unused code
 		$uglify_cmd = 'uglifyjs '
