@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Media_Compiler_JS extends Media_Compiler{
+class Media_Compiler_JS extends Media_Compiler implements Media_ICompiler {
 
 	public function compile(array $filepaths, array $options)
 	{
