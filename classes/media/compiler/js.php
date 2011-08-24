@@ -2,7 +2,7 @@
 
 class Media_Compiler_JS extends Media_Compiler{
 
-	public static function compile(array $filepaths, array $options)
+	public function compile(array $filepaths, array $options)
 	{
 		$file_meta = array();
 
@@ -30,8 +30,8 @@ class Media_Compiler_JS extends Media_Compiler{
 		if (empty($file_meta))
 		{
 			// Our files are empty because there is nothing to compile
-			Media_Compiler_JS::put_contents($unmin_path, '');
-			Media_Compiler_JS::put_contents($min_path, '');
+			$this->put_contents($unmin_path, '');
+			$this->put_contents($min_path, '');
 
 			return TRUE;
 		}
@@ -48,7 +48,7 @@ class Media_Compiler_JS extends Media_Compiler{
 		}
 
 		// Save the unminified version
-		Media_Compiler_JS::put_contents($unmin_path, $content);
+		$this->put_contents($unmin_path, $content);
 
 		// Not mangling variable names and not removing unused code
 		$uglify_cmd = 'uglifyjs '

@@ -2,9 +2,9 @@
 
 abstract class Media_Compiler {
 
-	public static function copy_file($source, $destination, $symlink = TRUE)
+	public function copy_file($source, $destination, $symlink = TRUE)
 	{
-		Media_Compiler::make_missing_directories($destination);
+		$this->make_missing_directories($destination);
 
 		if ($symlink)
 		{
@@ -16,13 +16,13 @@ abstract class Media_Compiler {
 		}
 	}
 
-	public static function put_contents($filepath, $contents)
+	public function put_contents($filepath, $contents)
 	{
-		Media_Compiler::make_missing_directories($filepath);
+		$this->make_missing_directories($filepath);
 		file_put_contents($filepath, $contents);
 	}
 
-	public static function make_missing_directories($filepath)
+	public function make_missing_directories($filepath)
 	{
 		$directory = pathinfo($filepath, PATHINFO_DIRNAME);
 		if ( ! is_dir($directory))

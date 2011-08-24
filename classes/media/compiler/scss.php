@@ -2,12 +2,12 @@
 
 class Media_Compiler_SCSS extends Media_Compiler {
 
-	public static function compile(array $filepaths, array $options)
+	public function compile(array $filepaths, array $options)
 	{
 		foreach ($filepaths as $relative_path => $absolute_path)
 		{
 			$destination = $options['tmp_dir'].'/'.$relative_path;
-			Media_Compiler_SCSS::copy_file($absolute_path, $destination);
+			$this->copy_file($absolute_path, $destination);
 		}
 
 		// Create the compass project
@@ -19,7 +19,7 @@ class Media_Compiler_SCSS extends Media_Compiler {
 
 		$view = View::factory('minion/tasks/media/compass')
 			->set('options', $options);
-		Media_Compiler_SCSS::put_contents($config_dir.'/compass.rb', $view->render());
+		$this->put_contents($config_dir.'/compass.rb', $view->render());
 
 		// Compile the project! Both for production and development
 		exec('cd '.escapeshellarg($options['tmp_dir']).' && compass compile');
@@ -32,7 +32,7 @@ class Media_Compiler_SCSS extends Media_Compiler {
 		foreach ($compiled_files as $relative_path => $absolute_path)
 		{
 			$destination = $options['save_dir'].'/'.$relative_path;
-			Media_Compiler_SCSS::copy_file($absolute_path, $destination, FALSE);
+			$this->copy_file($absolute_path, $destination, FALSE);
 		}
 
 		// Remove the tmp directory
