@@ -2,7 +2,7 @@
 
 *Tasks that work with my [http://github.com/Zeelot/kohana-media](kohana-media) module*
 
-- **Module Version:** 1.1.0
+- **Module Version:** 0.0.0
 - **Module URL:** <https://github.com/Zeelot/kohana-media>
 - **Compatible Kohana Version(s):** 3.2.x
 
