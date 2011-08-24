@@ -7,7 +7,7 @@
 - **Compatible Kohana Version(s):** 3.2.x
 
 ## Description
-Currently provides `media:compile` and `media:watch` tasks. `media:compile` will gather all the JS and SCSS files in your Cascading Filesystem and compile them into files to server using the [http://github.com/Zeelot/kohana-media](kohana-media) module. `media:watch` will watch your media files for changes and automatically trigger `media:compile` for you.
+Currently provides `media:compile` and `media:watch` tasks. `media:compile` will gather all the JS and SCSS files in your Cascading Filesystem and compile them into files to serve using the [http://github.com/Zeelot/kohana-media](kohana-media) module. `media:watch` will watch your media files for changes and automatically trigger `media:compile` for you.
 
 The module will also allow you to configure additional compilers with a simple config file and interface class.
 
