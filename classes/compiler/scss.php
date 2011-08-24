@@ -1,13 +1,13 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Compiler_SCSS {
+class Compiler_SCSS extends Media_Compiler {
 
 	public static function compile(array $filepaths, array $options)
 	{
 		foreach ($filepaths as $relative_path => $absolute_path)
 		{
 			$destination = $options['tmp_dir'].'/'.$relative_path;
-			Compiler_SCSS::put_file($absolute_path, $destination);
+			Compiler_SCSS::copy_file($absolute_path, $destination);
 		}
 
 		// Create the compass project
@@ -19,7 +19,7 @@ class Compiler_SCSS {
 
 		$view = View::factory('minion/tasks/media/compass')
 			->set('options', $options);
-		file_put_contents($config_dir.'/compass.rb', $view->render());
+		Compiler_SCSS::put_contents($config_dir.'/compass.rb', $view->render());
 
 		// Compile the project!
 		exec('cd '.escapeshellarg($options['tmp_dir']).' && compass compile');
@@ -32,29 +32,10 @@ class Compiler_SCSS {
 		foreach ($compiled_files as $relative_path => $absolute_path)
 		{
 			$destination = $options['save_dir'].'/'.$relative_path;
-			Compiler_SCSS::put_file($absolute_path, $destination, FALSE);
+			Compiler_SCSS::copy_file($absolute_path, $destination, FALSE);
 		}
 
 		// Remove the tmp directory
 		exec('rm -R '.escapeshellarg($options['tmp_dir']));
-	}
-
-	public static function put_file($source, $destination, $symlink = TRUE)
-	{
-		$directory = pathinfo($destination, PATHINFO_DIRNAME);
-		if ( ! is_dir($directory))
-		{
-			// Make any missing directory
-			mkdir($directory, 0777, TRUE);
-		}
-
-		if ($symlink)
-		{
-			symlink($source, $destination);
-		}
-		else
-		{
-			copy($source, $destination);
-		}
 	}
 }
