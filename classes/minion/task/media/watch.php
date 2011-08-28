@@ -24,6 +24,7 @@ class Minion_Task_Media_Watch extends Minion_Task {
 				{
 					Minion_CLI::write('Changes detected: '.$filepath);
 					$this->compile();
+					Minion_CLI::write('Polling for changes');
 					break;
 				}
 			}
