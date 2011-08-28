@@ -14,6 +14,8 @@ class Minion_Task_Media_Watch extends Minion_Task {
 		$end_time = $start_time + (int) $config['lifetime'];
 		$this->compile();
 
+		Minion_CLI::write('Polling for changes');
+
 		while (TRUE)
 		{
 			foreach(Arr::flatten(Kohana::list_files('media')) as $filepath)
@@ -29,6 +31,7 @@ class Minion_Task_Media_Watch extends Minion_Task {
 			if (time() > $end_time)
 			{
 				// We exceeded the lifetime for this process
+				Minion_CLI::write('Lietime ended');
 				return;
 			}
 
