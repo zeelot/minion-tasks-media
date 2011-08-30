@@ -3,7 +3,7 @@
 class Minion_Task_Media_Compile extends Minion_Task {
 
 	protected $_config = array(
-		'ext' => NULL,
+		'pattern' => NULL,
 	);
 
 	public function execute(array $config)
@@ -11,23 +11,23 @@ class Minion_Task_Media_Compile extends Minion_Task {
 		$media = Arr::flatten(Kohana::list_files('media'));
 		$module_config = Kohana::$config->load('minion-media');
 
-		foreach ($module_config->compilers as $info)
+		foreach ($module_config->compilers as $key => $info)
 		{
 			$files = array();
 
-			// If --ext was specified, only worry about matching compilers
-			if ($config['ext'] !== NULL)
+			// If --pattern was specified, only worry about matching compilers
+			if ($config['pattern'] !== NULL)
 			{
-				if ( ! preg_match($info['extension'], $config['ext']))
+				if ( ! preg_match($info['pattern'], $config['pattern']))
 					continue; // Move on to the next compiler
 			}
 
 			foreach ($media as $relative => $filepath)
 			{
-				$ext = pathinfo($filepath, PATHINFO_EXTENSION);
-				// Check if the extension matches the regex for the compiler
-				if (preg_match($info['extension'], $ext))
+				// Check if the path matches the pattern for the compiler
+				if (preg_match($info['pattern'], $relative))
 				{
+					Minion_CLI::write('('.$key.') Matched '.$relative);
 					$files[$relative] = $filepath;
 				}
 			}

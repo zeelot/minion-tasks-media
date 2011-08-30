@@ -2,8 +2,9 @@
 
 return array(
 	'compilers' => array(
-		'js'   => array(
-			'extension' => '/js/',
+		'js' => array(
+			// Regular expression the path must match
+			'pattern' => '/^(media\/js\/).*\.js$/',
 			'class'     => 'Media_Compiler_JS',
 			'options'   => array(
 				// Options for concatenating JS files
@@ -13,7 +14,7 @@ return array(
 						// Files get sorted by this before being merged
 						'order' => 1,
 						// Files belong to this group if the filepath matches the pattern
-						'pattern' => '/^media\/js.*/',
+						'pattern' => '/^(media\/)js.*/',
 					),
 				),
 				// Where to save the concatenated JS
@@ -25,8 +26,9 @@ return array(
 				),
 			),
 		),
-		'scss'   => array(
-			'extension' => '/scss/',
+		'scss' => array(
+			// Regular expression the path must match
+			'pattern' => '/^(media\/css\/scss\/).*\.scss$/',
 			'class'     => 'Media_Compiler_SCSS',
 			'options'   => array(
 				// Compass project settings (relative from tmp_dir)
