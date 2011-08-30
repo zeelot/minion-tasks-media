@@ -14,7 +14,8 @@ class Minion_Task_Media_Compile extends Minion_Task {
 			foreach ($media as $relative => $filepath)
 			{
 				$ext = pathinfo($filepath, PATHINFO_EXTENSION);
-				if ($ext === $info['extension'])
+				// Check if the extension matches the regex for the compiler
+				if (preg_match($info['extension'], $ext))
 				{
 					$files[$relative] = $filepath;
 				}

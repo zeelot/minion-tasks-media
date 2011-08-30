@@ -3,7 +3,7 @@
 return array(
 	'compilers' => array(
 		'js'   => array(
-			'extension' => 'js',
+			'extension' => '/js/',
 			'class'     => 'Media_Compiler_JS',
 			'options'   => array(
 				// Options for concatenating JS files
@@ -26,7 +26,7 @@ return array(
 			),
 		),
 		'scss'   => array(
-			'extension' => 'scss',
+			'extension' => '/scss/',
 			'class'     => 'Media_Compiler_SCSS',
 			'options'   => array(
 				// Compass project settings (relative from tmp_dir)
