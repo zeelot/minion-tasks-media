@@ -2,6 +2,10 @@
 
 class Minion_Task_Media_Compile extends Minion_Task {
 
+	protected $_config = array(
+		'ext' => NULL,
+	);
+
 	public function execute(array $config)
 	{
 		$media = Arr::flatten(Kohana::list_files('media'));
@@ -10,6 +14,13 @@ class Minion_Task_Media_Compile extends Minion_Task {
 		foreach ($module_config->compilers as $info)
 		{
 			$files = array();
+
+			// If --ext was specified, only worry about matching compilers
+			if ($config['ext'] !== NULL)
+			{
+				if ( ! preg_match($info['extension'], $config['ext']))
+					continue; // Move on to the next compiler
+			}
 
 			foreach ($media as $relative => $filepath)
 			{
