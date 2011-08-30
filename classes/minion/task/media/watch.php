@@ -23,7 +23,7 @@ class Minion_Task_Media_Watch extends Minion_Task {
 				if (filemtime($filepath) > $this->_last_compiled_time)
 				{
 					Minion_CLI::write('Changes detected: '.$filepath);
-					$this->compile();
+					$this->compile(pathinfo($filepath, PATHINFO_EXTENSION));
 					Minion_CLI::write('Polling for changes');
 					break;
 				}
@@ -40,11 +40,23 @@ class Minion_Task_Media_Watch extends Minion_Task {
 		}
 	}
 
-	public function compile()
+	public function compile($ext = NULL)
 	{
-		// Execute the command to compile (We assume minion is in DOCROOT for now)
-		exec('cd '.escapeshellarg(DOCROOT).' && ./minion media:compile');
+		if ($ext === NULL)
+		{
+			Minion_CLI::write('Compiling all media files');
+			// Execute the command to compile (We assume minion is in DOCROOT for now)
+			exec('cd '.escapeshellarg(DOCROOT).' && ./minion media:compile');
+		}
+		else
+		{
+			Minion_CLI::write('Compiling "'.$ext.'" files');
+			// Execute the command to compile (We assume minion is in DOCROOT for now)
+			exec('cd '.escapeshellarg(DOCROOT).' && ./minion media:compile --ext='.escapeshellarg($ext));
+		}
+
 		$this->_last_compiled_time = time();
+		Minion_CLI::write('Done');
 	}
 
 	public function build_validation(Validation $validation)
