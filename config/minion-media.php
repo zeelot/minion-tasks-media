@@ -43,5 +43,14 @@ return array(
 				'save_dir'        => rtrim(APPPATH, '/'),
 			),
 		),
+		'couchapp' => array(
+			// Regular expression the path must match
+			'pattern' => '/^(media\/couchapp\/).*/',
+			'class'     => 'Media_Compiler_CouchApp',
+			'options'   => array(
+				// Where we create the temporary couchapp directory
+				'tmp_dir'         => APPPATH.'cache/couchapp',
+			),
+		),
 	),
 );
