@@ -18,12 +18,12 @@ class Minion_Task_Media_Watch extends Minion_Task {
 
 		while (TRUE)
 		{
-			foreach(Arr::flatten(Kohana::list_files('media')) as $filepath)
+			foreach(Arr::flatten(Kohana::list_files('media')) as $relative => $filepath)
 			{
 				if (filemtime($filepath) > $this->_last_compiled_time)
 				{
 					Minion_CLI::write('Changes detected: '.$filepath);
-					$this->compile(pathinfo($filepath, PATHINFO_EXTENSION));
+					$this->compile($relative);
 					Minion_CLI::write('Polling for changes');
 					break;
 				}
@@ -40,9 +40,9 @@ class Minion_Task_Media_Watch extends Minion_Task {
 		}
 	}
 
-	public function compile($ext = NULL)
+	public function compile($path = NULL)
 	{
-		if ($ext === NULL)
+		if ($path === NULL)
 		{
 			Minion_CLI::write('Compiling all media files');
 			// Execute the command to compile (We assume minion is in DOCROOT for now)
@@ -50,9 +50,9 @@ class Minion_Task_Media_Watch extends Minion_Task {
 		}
 		else
 		{
-			Minion_CLI::write('Compiling "'.$ext.'" files');
+			Minion_CLI::write('Compiling files with pattern "'.$path.'"');
 			// Execute the command to compile (We assume minion is in DOCROOT for now)
-			exec('cd '.escapeshellarg(DOCROOT).' && ./minion media:compile --ext='.escapeshellarg($ext));
+			exec('cd '.escapeshellarg(DOCROOT).' && ./minion media:compile --pattern='.escapeshellarg($path));
 		}
 
 		$this->_last_compiled_time = time();
