@@ -3,7 +3,7 @@
 	return array(
 		'compilers' => array(
 			'js'   => array(
-				'extension' => 'js',
+				'pattern'   => 'js',
 				'class'     => 'Media_Compiler_JS',
 				'options'   => array(
 					'concat' => array(
@@ -19,7 +19,7 @@
 				),
 			),
 			'scss'   => array(
-				'extension' => 'scss',
+				'pattern'   => 'scss',
 				'class'     => 'Media_Compiler_SCSS',
 				'options'   => array(
 					'css_dir'         => 'media/css/compiled',
@@ -36,7 +36,7 @@
 
 ## Compilers
 
-This is simply the list of compilers. The module comes with a JS and SCSS compiler but allows you to add or replace any other compiler. All compilers have 3 items defined. The `extension` to match for the compiler, the `class` that handles compiling the files, and custom `options` to pass into that compiler.
+This is simply the list of compilers. The module comes with a JS and SCSS compiler but allows you to add or replace any other compiler. All compilers have 3 items defined. The `pattern` to match for the compiler, the `class` that handles compiling the files, and custom `options` to pass into that compiler.
 
 ## JS Options
 
