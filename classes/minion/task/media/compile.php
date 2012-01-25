@@ -13,6 +13,9 @@ class Minion_Task_Media_Compile extends Minion_Task {
 
 		foreach ($module_config->compilers as $key => $info)
 		{
+			if ( ! is_array($info))
+				continue; // This compiler group was disabled in the config
+
 			$files = array();
 
 			// If --pattern was specified, only worry about matching compilers
