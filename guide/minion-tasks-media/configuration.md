@@ -31,12 +31,19 @@
 					'save_dir'        => rtrim(APPPATH, '/'),
 				),
 			),
+			'couchapp' => array(
+				'pattern' => '/^(media\/couchapp\/).*/',
+				'class'     => 'Media_Compiler_CouchApp',
+				'options'   => array(
+					'tmp_dir'         => APPPATH.'cache/couchapp',
+				),
+			),
 		),
 	);
 
 ## Compilers
 
-This is simply the list of compilers. The module comes with a JS and SCSS compiler but allows you to add or replace any other compiler. All compilers have 3 items defined. The `pattern` to match for the compiler, the `class` that handles compiling the files, and custom `options` to pass into that compiler.
+This is simply the list of compilers. The module comes with a JS, SCSS, and CouchApp compiler but allows you to add or replace any other compiler. All compilers have 3 items defined. The `pattern` to match for the compiler, the `class` that handles compiling the files, and custom `options` to pass into that compiler.
 
 You can disable any of the compilers by simply setting the value to `NULL` or `FALSE`.
 
@@ -54,3 +61,7 @@ The Javascript compiler takes a set of `concat` options, and `save_paths`. In th
 The SCSS options include five options directly from `compass`. These are `css_dir`, `sass_dir`, `output_style`, `images_dir`, and `relative_assets`. Take a look at the compass documentation to find out what those are if you are confused. These options should be written relatively from your `APPPATH` or module's path. So if you keep your SCSS files in `APPPATH.'media/scss'` and you want the compiled CSS in `media/css/compiled`, you would set `css_dir` to `media/css/compiled` and `sass_dir` to `media/scss`. Do not use absolute paths here.
 
 The `tmp_dir` option is simply where the compiler will create a temporary compass project. It just has to be writable and should be an absolute path. The `cache` directory is a good place for this because it is most likely already writable. These temporary files will be automatically deleted as soon as the compiler is done. The `save_dir` option is where you want the final CSS files to be placed. They will be taken from the compass project and copied over to this directory. The `css_dir` option is appended to this path so if you set `save_dir` to `rtrim(APPPATH, '/')`, the CSS files will be sent to `APPPATH.'media/css/compiled'`.
+
+## CouchApp Options
+
+The CouchApp compiler only needs a `tmp_path` so it can create a couchapp project in that location with all the CouchDB documents from the various Kohana directories.

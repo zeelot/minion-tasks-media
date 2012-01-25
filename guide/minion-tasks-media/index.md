@@ -8,7 +8,7 @@ There are two tasks in this module. `media:compile` and `media:watch`.
 
 ## Compile
 
-The `media:compile` task will search through Kohana's Cascading Filesystem and compile SCSS and JS files for you.
+The `media:compile` task will search through Kohana's Cascading Filesystem and compile files for you based on which compilers you have configured.
 
 ### JS
 
@@ -37,9 +37,13 @@ Here is an example of the `framework` and `app` groups to make sure `app` JS fil
 
 The compiling of SCSS files is a little more complex than JS files (in some ways, at least). First, all the SCSS files are found and copied to a temporary `compass` project. The configuration for this project can be specified in the module's config file. Then, the compiler simply runs `compass compile`, takes the generated CSS files, and copies them to the configured `save_dir`. What this task does, basically, is add the `compass compile` functionality to a fake project made up of SCSS files across your entire Kohana application. If a module includes `/media/css/scss/forms.scss`, it gets added to all the other SCSS files for compass to compile.
 
+### CouchApp
+
+The CouchApp compiler simply takes a set of CouchDB documents, creates a Couch App, and pushes it to the configured database.
+
 ### Custom Compilers
 
-Custom compilers can be written easily by adding any needed options to the config file and creating a class that implements the `Media_ICompiler` interface. Compilers simply provide a `compile()` method that takes the array of files, and the array of options from the config. When `media:compile` is run, the module will look for files matching the extension you configured for the compiler, and call the compiler's `compile()` method. You take it from there.
+Custom compilers can be written easily by adding any needed options to the config file and creating a class that implements the `Media_ICompiler` interface. Compilers simply provide a `compile()` method that takes the array of files, and the array of options from the config. When `media:compile` is run, the module will look for files matching the pattern you configured for the compiler, and call the compiler's `compile()` method. You take it from there.
 
 ## Watch
 
