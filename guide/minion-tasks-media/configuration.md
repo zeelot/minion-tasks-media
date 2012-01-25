@@ -3,7 +3,7 @@
 	return array(
 		'compilers' => array(
 			'js'   => array(
-				'pattern'   => 'js',
+				'pattern'   => '/^(media\/js\/).*\.js$/',
 				'class'     => 'Media_Compiler_JS',
 				'options'   => array(
 					'concat' => array(
@@ -19,7 +19,7 @@
 				),
 			),
 			'scss'   => array(
-				'pattern'   => 'scss',
+				'pattern'   => '/^(media\/css\/scss\/).*\.scss$/',
 				'class'     => 'Media_Compiler_SCSS',
 				'options'   => array(
 					'css_dir'         => 'media/css/compiled',
