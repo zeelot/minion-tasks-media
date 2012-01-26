@@ -46,13 +46,13 @@ class Minion_Task_Media_Watch extends Minion_Task {
 		{
 			Minion_CLI::write('Compiling all media files');
 			// Execute the command to compile (We assume minion is in DOCROOT for now)
-			exec('cd '.escapeshellarg(DOCROOT).' && ./minion media:compile');
+			exec('./minion media:compile');
 		}
 		else
 		{
 			Minion_CLI::write('Compiling files with pattern "'.$path.'"');
 			// Execute the command to compile (We assume minion is in DOCROOT for now)
-			exec('cd '.escapeshellarg(DOCROOT).' && ./minion media:compile --pattern='.escapeshellarg($path));
+			exec('./minion media:compile --pattern='.escapeshellarg($path));
 		}
 
 		$this->_last_compiled_time = time();
