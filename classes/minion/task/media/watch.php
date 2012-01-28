@@ -55,6 +55,7 @@ class Minion_Task_Media_Watch extends Minion_Task {
 			exec('./minion media:compile --pattern='.escapeshellarg($path));
 		}
 
+		sleep(1);
 		$this->_last_compiled_time = time();
 		Minion_CLI::write('Done');
 	}
