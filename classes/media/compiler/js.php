@@ -4,6 +4,9 @@ class Media_Compiler_JS extends Media_Compiler implements Media_ICompiler {
 
 	public function compile(array $filepaths, array $options)
 	{
+		// Sort by filename first (things like foo/bar/01.something.js will sort by 01.something.js)
+		usort($filepaths, array($this, 'sort_by_filename'));
+
 		$file_meta = array();
 
 		foreach ($filepaths as $relative_path => $absolute_path)
@@ -31,7 +34,10 @@ class Media_Compiler_JS extends Media_Compiler implements Media_ICompiler {
 		{
 			// Our files are empty because there is nothing to compile
 			$this->put_contents($unmin_path, '');
-			$this->put_contents($min_path, '');
+			if ($min_path !== FALSE)
+			{
+				$this->put_contents($min_path, '');
+			}
 
 			return TRUE;
 		}
@@ -50,13 +56,21 @@ class Media_Compiler_JS extends Media_Compiler implements Media_ICompiler {
 		// Save the unminified version
 		$this->put_contents($unmin_path, $content);
 
-		// Not mangling variable names and not removing unused code
-		$uglify_cmd = 'uglifyjs '
-			.'--no-mangle '
-			.'--no-dead-code '
-			.'--output '.escapeshellarg($min_path).' '
-			.escapeshellarg($unmin_path);
+		if ($min_path !== FALSE)
+		{
+			// Not mangling variable names and not removing unused code
+			$uglify_cmd = 'uglifyjs '
+				.'--no-mangle '
+				.'--no-dead-code '
+				.'--output '.escapeshellarg($min_path).' '
+				.escapeshellarg($unmin_path);
 
-		exec($uglify_cmd);
+			exec($uglify_cmd);
+		}
+	}
+
+	public function sort_by_filename($a, $b)
+	{
+		return (basename($a) < basename($b)) ? -1 : 1;
 	}
 }
