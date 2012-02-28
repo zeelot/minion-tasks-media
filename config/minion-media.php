@@ -26,7 +26,7 @@ return array(
 				'save_paths' => array(
 					// Version best used in production (FALSE will disable)
 					'minified'   => APPPATH.'media/js/compiled/app.min.js',
-					// Unminified version for development (FALSE will disable)
+					// Unminified version for development
 					'unminified' => APPPATH.'media/js/compiled/app.js',
 				),
 			),
