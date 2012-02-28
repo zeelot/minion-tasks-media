@@ -1,6 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 return array(
+	/**
+	 * Use symlinks when possible (used when compiling files)
+	 * Disable this if your filesystem has issues with the `ln` command
+	 */
+	'symlinks' => TRUE,
 	'compilers' => array(
 		'js' => array(
 			// Regular expression the path must match
@@ -19,9 +24,9 @@ return array(
 				),
 				// Where to save the concatenated JS
 				'save_paths' => array(
-					// Version best used in production
+					// Version best used in production (FALSE will disable)
 					'minified'   => APPPATH.'media/js/compiled/app.min.js',
-					// Unminified version for development
+					// Unminified version for development (FALSE will disable)
 					'unminified' => APPPATH.'media/js/compiled/app.js',
 				),
 			),

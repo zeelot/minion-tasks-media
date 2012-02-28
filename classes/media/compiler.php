@@ -6,7 +6,7 @@ abstract class Media_Compiler {
 	{
 		$this->make_missing_directories($destination);
 
-		if ($symlink)
+		if ($symlink AND Kohana::$config->load('minion-media')->symlinks)
 		{
 			exec('ln -sf '.escapeshellarg($source).' '.escapeshellarg($destination));
 		}
