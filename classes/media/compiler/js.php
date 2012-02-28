@@ -5,7 +5,7 @@ class Media_Compiler_JS extends Media_Compiler implements Media_ICompiler {
 	public function compile(array $filepaths, array $options)
 	{
 		// Sort by filename first (things like foo/bar/01.something.js will sort by 01.something.js)
-		usort($filepaths, array($this, 'sort_by_filename'));
+		uasort($filepaths, array($this, 'sort_by_filename'));
 
 		$file_meta = array();
 
