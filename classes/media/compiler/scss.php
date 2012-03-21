@@ -36,6 +36,14 @@ class Media_Compiler_SCSS extends Media_Compiler implements Media_ICompiler {
 		}
 
 		// Remove the tmp directory
-		exec('rm -R '.escapeshellarg($options['tmp_dir']));
+		if (Kohana::$is_windows)
+		{
+			$rm_command = 'rmdir /S /Q '.escapeshellarg($options['tmp_dir']);
+		}
+		else
+		{
+			$rm_command = 'rm -R '.escapeshellarg($options['tmp_dir']);
+		}
+		exec($rm_command);
 	}
 }
