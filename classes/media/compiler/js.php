@@ -50,7 +50,7 @@ class Media_Compiler_JS extends Media_Compiler implements Media_ICompiler {
 
 		foreach ($files as $path)
 		{
-			$content .= file_get_contents($path);
+			$content .= file_get_contents($path) . PHP_EOL;
 		}
 
 		// Save the unminified version
