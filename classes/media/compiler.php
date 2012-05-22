@@ -8,7 +8,14 @@ abstract class Media_Compiler {
 
 		if ($symlink AND Kohana::$config->load('minion-media')->symlinks)
 		{
-			exec('ln -sf '.escapeshellarg($source).' '.escapeshellarg($destination));
+			if (Kohana::$is_windows)
+			{
+				exec('mklink '.escapeshellarg($destination).' '.escapeshellarg($source));
+			}
+			else
+			{
+				exec('ln -sf '.escapeshellarg($source).' '.escapeshellarg($destination));
+			}
 		}
 		else
 		{
