@@ -10,6 +10,8 @@ class Minion_Task_Media_Compile extends Minion_Task {
 	{
 		$media = Arr::flatten(Kohana::list_files('media'));
 		$module_config = Kohana::$config->load('minion-media');
+		
+		usort($module_config->compilers, array($this, 'sort_compilers'));
 
 		foreach ($module_config->compilers as $key => $info)
 		{
@@ -43,5 +45,13 @@ class Minion_Task_Media_Compile extends Minion_Task {
 				$compiler->compile($files, Arr::get($info, 'options', array()));
 			}
 		}
+	}
+	
+	public function sort_compilers($a, $b)
+	{
+		$a_order = Arr::get($a, 'order', PHP_INT_MAX);
+		$b_order = Arr::get($b, 'order', PHP_INT_MAX);
+	
+		return ($a_order < $b_order) ? -1 : 1;
 	}
 }

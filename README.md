@@ -15,5 +15,6 @@ The module will also allow you to configure additional compilers with a simple c
 
 - **uglifyjs** - required to minify the JS
 - **compass** - required to compile and minify the SCSS files into CSS files
+- **coffee** - required to compile coffee files. This can be installed through npm.
 
-The tasks have only been tested on Ubuntu servers for now and I anticipage issues on Windows systems. Let me know if you test the tasks in any other OS and run into any issues.
+The tasks have only been tested on Ubuntu servers for now and I anticipate issues on Windows systems. Let me know if you test the tasks in any other OS and run into any issues.
