@@ -45,7 +45,7 @@
 
 ## Compilers
 
-This is simply the list of compilers. The module comes with a JS, SCSS, and CouchApp compiler but allows you to add or replace any other compiler. All compilers have 3 items defined. The `pattern` to match for the compiler, the `class` that handles compiling the files, and custom `options` to pass into that compiler. A forth optional item called `order` allows you to specify the order in which the different compilers are run.
+This is simply the list of compilers. The module comes with a JS, SCSS, and CouchApp compiler but allows you to add or replace any other compiler. All compilers have 4 options defined. The pattern to match for the compiler, the class that handles compiling the files, the custom options to pass into that compiler, and an optional item called order that allows you to specify the order in which the different compilers are run.
 
 You can disable any of the compilers by simply setting the value to `NULL` or `FALSE`.
 
