@@ -14,12 +14,11 @@ class Media_Compiler_Coffee extends Media_Compiler implements Media_ICompiler {
 		
 		$save_dir = Arr::get($options, 'save_dir');
 		
-		$coffee_cmd = 'coffee --compile '; // compile
-		$coffee_cmd .= '--output '.escapeshellarg($tmp_dir.DIRECTORY_SEPARATOR.$options['js_dir']).' '
-				    .escapeshellarg($tmp_dir.DIRECTORY_SEPARATOR.$options['coffee_dir']);
+		$coffee_cmd = 'cd '.escapeshellarg($tmp_dir.'/'.$options['coffee_dir']).' && coffee --compile '; // compile
+		$coffee_cmd .= '--output '.escapeshellarg($tmp_dir.'/'.$options['js_dir']).' .';
 
 		exec($coffee_cmd);
-		
+
 		$compiled_files = Kohana::list_files($options['js_dir'], array($tmp_dir.DIRECTORY_SEPARATOR));
 		$compiled_files = Arr::flatten($compiled_files);
 		
