@@ -29,6 +29,8 @@ class Media_Compiler_SCSS extends Media_Compiler implements Media_ICompiler {
 
 		$compiled_files = Kohana::list_files($options['css_dir'], array($options['tmp_dir'].'/'));
 
+		$compiled_files = Arr::flatten($compiled_files);
+		
 		foreach ($compiled_files as $relative_path => $absolute_path)
 		{
 			$destination = $options['save_dir'].'/'.$relative_path;

@@ -37,6 +37,11 @@ Here is an example of the `framework` and `app` groups to make sure `app` JS fil
 
 The compiling of SCSS files is a little more complex than JS files (in some ways, at least). First, all the SCSS files are found and copied to a temporary `compass` project. The configuration for this project can be specified in the module's config file. Then, the compiler simply runs `compass compile`, takes the generated CSS files, and copies them to the configured `save_dir`. What this task does, basically, is add the `compass compile` functionality to a fake project made up of SCSS files across your entire Kohana application. If a module includes `/media/css/scss/forms.scss`, it gets added to all the other SCSS files for compass to compile.
 
+### Coffeescript
+
+The coffeescript compiler is is similar to the SCSS compiler. All of the coffee files are moved to a temporary directory where they are compiled into javascript files. The newly generated javascript files are then copied to the `save_dir`. If you have coffee files in `media/coffee` you can have the generated javascript files created and moved to `media/js`.
+
+
 ### CouchApp
 
 The CouchApp compiler simply takes a set of CouchDB documents, creates a Couch App, and pushes it to the configured database.
