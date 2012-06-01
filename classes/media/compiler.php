@@ -23,6 +23,18 @@ abstract class Media_Compiler {
 		}
 	}
 
+	public function delete_directory($directory)
+	{
+		if (Kohana::$is_windows)
+		{
+			exec('rmdir /S /Q '.escapeshellarg($directory));
+		}
+		else
+		{
+			exec('rm -R '.escapeshellarg($directory));
+		}
+	}
+	
 	public function put_contents($filepath, $contents)
 	{
 		$this->make_missing_directories($filepath);
