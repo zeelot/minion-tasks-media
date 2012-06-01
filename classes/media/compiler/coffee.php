@@ -28,16 +28,7 @@ class Media_Compiler_Coffee extends Media_Compiler implements Media_ICompiler {
 			$this->copy_file($absolute_path, $destination, FALSE);
 		}
 		
-		
 		// Remove the tmp directory
- 		if (Kohana::$is_windows)
- 		{
- 			$rm_command = 'rmdir /S /Q '.escapeshellarg($tmp_dir);
- 		}
- 		else
- 		{
- 			$rm_command = 'rm -R '.escapeshellarg($tmp_dir);
- 		}
- 		exec($rm_command);
+		$this->delete_directory($tmp_dir);
 	}
 }
