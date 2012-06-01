@@ -2,14 +2,14 @@
 
 	return array(
 		'compilers' => array(
-			'js'   => array(
+			'js' => array(
 				'order'		=> 10,
 				'pattern'   => '/^(media\/js\/).*\.js$/',
 				'class'     => 'Media_Compiler_JS',
 				'options'   => array(
 					'concat' => array(
 						'main' => array(
-							'order' => 1,
+							'order'   => 1,
 							'pattern' => '/^media\/js.*/',
 						),
 					),
@@ -19,7 +19,7 @@
 					),
 				),
 			),
-			'scss'   => array(
+			'scss' => array(
 				'order'		=> 1,
 				'pattern'   => '/^(media\/css\/scss\/).*\.scss$/',
 				'class'     => 'Media_Compiler_SCSS',
@@ -34,7 +34,7 @@
 				),
 			),
 			'coffeescript' => array(
-				'order' => 1,
+				'order'     => 1,
 				// Regular expression the path must match
 				'pattern'   => '/^media\/coffee\/.*\.coffee$/',
 				'class'     => 'Media_Compiler_Coffee',
@@ -45,15 +45,15 @@
 					// Where we create the temporary coffee project
 					'tmp_dir' 		=> APPPATH.'cache/coffee',
 					// We append js_dir to this path before saving generated js files
-					'save_dir'        => rtrim(APPPATH, '/'),
+					'save_dir'      => rtrim(APPPATH, '/'),
 				),
 			),
 		
 			'couchapp' => array(
-				'pattern' => '/^(media\/couchapp\/).*/',
+				'pattern'   => '/^(media\/couchapp\/).*/',
 				'class'     => 'Media_Compiler_CouchApp',
 				'options'   => array(
-					'tmp_dir'         => APPPATH.'cache/couchapp',
+					'tmp_dir' => APPPATH.'cache/couchapp',
 				),
 			),
 		),
