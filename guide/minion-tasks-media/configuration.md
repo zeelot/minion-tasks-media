@@ -1,20 +1,6 @@
 # Configuration
 
 	return array(
-		'js' => array(
-			'order'		=> 2,
-			'pattern'   => '/^(media\/js\/).*\.js$/',
-			'class'     => 'Media_Compiler_JS',
-			'options'   => array(
-				'concat' => array(
-					'main' => array(
-						'order' => 1,
-						'pattern' => '/^media\/js.*/',
-					),
-				),
-				'save_paths' => array(
-					'minified'   => APPPATH.'media/js/compiled/app.min.js',
-					'unminified' => APPPATH.'media/js/compiled/app.js',
 		'compilers' => array(
 			'js'   => array(
 				'order'		=> 10,
@@ -47,41 +33,28 @@
 					'save_dir'        => rtrim(APPPATH, '/'),
 				),
 			),
-		),
-		'coffeescript' => array(
-			'order' => 1,
-			// Regular expression the path must match
-			'pattern'   => '/^media\/coffee\/.*\.coffee$/',
-			'class'     => 'Media_Compiler_Coffee',
-			'options'   => array(
-				// Coffee project settings (relative from tmp_dir)
-				'js_dir'		=> 'media/js',
-				'coffee_dir'	=> 'media/coffee',
-				// Where we create the temporary coffee project
-				'tmp_dir' 		=> APPPATH.'cache/coffee',
-				// We append js_dir to this path before saving generated js files
-				'save_dir'        => rtrim(APPPATH, '/'),
+			'coffeescript' => array(
+				'order' => 1,
+				// Regular expression the path must match
+				'pattern'   => '/^media\/coffee\/.*\.coffee$/',
+				'class'     => 'Media_Compiler_Coffee',
+				'options'   => array(
+					// Coffee project settings (relative from tmp_dir)
+					'js_dir'		=> 'media/js',
+					'coffee_dir'	=> 'media/coffee',
+					// Where we create the temporary coffee project
+					'tmp_dir' 		=> APPPATH.'cache/coffee',
+					// We append js_dir to this path before saving generated js files
+					'save_dir'        => rtrim(APPPATH, '/'),
+				),
 			),
-		),
-		'scss' => array(
-			'order'		=> 3,
-			'pattern'   => '/^(media\/css\/scss\/).*\.scss$/',
-			'class'     => 'Media_Compiler_SCSS',
-			'options'   => array(
-				'css_dir'         => 'media/css/compiled',
-				'sass_dir'        => 'media/css/scss',
-				'output_style'    => ':compressed',
-				'images_dir'      => 'media/images/',
-				'relative_assets' => TRUE,
-				'tmp_dir'         => APPPATH.'cache/compass',
-				'save_dir'        => rtrim(APPPATH, '/'),
-			),
-		),
-		'couchapp' => array(
-			'pattern' => '/^(media\/couchapp\/).*/',
-			'class'     => 'Media_Compiler_CouchApp',
-			'options'   => array(
-				'tmp_dir'         => APPPATH.'cache/couchapp',
+		
+			'couchapp' => array(
+				'pattern' => '/^(media\/couchapp\/).*/',
+				'class'     => 'Media_Compiler_CouchApp',
+				'options'   => array(
+					'tmp_dir'         => APPPATH.'cache/couchapp',
+				),
 			),
 		),
 	);
