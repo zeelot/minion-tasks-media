@@ -1,8 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Minion_Task_Media_Watch extends Minion_Task {
+class Task_Media_Watch extends Minion_Task {
 
-	protected $_config = array(
+	protected $_options = array(
 		'lifetime' => '600', // Run for 10 minutes by default
 	);
 

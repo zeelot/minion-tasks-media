@@ -1,8 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Minion_Task_Media_Compile extends Minion_Task {
+class Task_Media_Compile extends Minion_Task {
 
-	protected $_config = array(
+	protected $_options = array(
 		'pattern' => NULL,
 	);
 
