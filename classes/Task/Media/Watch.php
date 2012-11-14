@@ -8,7 +8,7 @@ class Task_Media_Watch extends Minion_Task {
 
 	protected $_last_compiled_time;
 
-	public function execute(array $config)
+	protected function _execute(array $config)
 	{
 		$start_time = time();
 		$end_time = $start_time + (int) $config['lifetime'];
