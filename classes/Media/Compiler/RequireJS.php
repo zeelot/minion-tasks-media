@@ -17,11 +17,12 @@ class Media_Compiler_RequireJS extends Media_Compiler implements Media_ICompiler
 
 		$inits = Kohana::list_files($options['init_dir']);
 
-		foreach ($inits as $init)
+		$start = strlen($options['build.js']['baseUrl']);
+		foreach ($inits as $relative => $init)
 		{
-			$md5 = md5($init); // To make sure we don't replace inits
-			$options['build.js']['include'][] = $md5;
-			$this->copy_file($init, $options['tmp_dir'].'/'.$options['build.js']['baseUrl'].$md5.'.js');
+			$name = substr($relative, $start, -3);
+
+			array_unshift($options['build.js']['include'], $name);
 		}
 
 		// Create the RequireJS project
